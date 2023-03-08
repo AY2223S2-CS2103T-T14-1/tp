@@ -14,6 +14,9 @@ import seedu.address.model.person.Person;
  */
 public class PersonCard extends UiPart<Region> {
 
+    @FXML
+    private Label remark;
+
     private static final String FXML = "PersonListCard.fxml";
 
     /**
@@ -45,6 +48,7 @@ public class PersonCard extends UiPart<Region> {
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
+
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
@@ -55,6 +59,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        remark.setText(person.getRemark().value);
     }
 
     @Override
